@@ -1,0 +1,19 @@
+app:
+  build: .
+  command: bash start.sh
+  ports:
+    - "3000:3000"
+  environment:
+    - DB_PASSWORD=postgres
+  links: 
+    - db
+  volumes:
+    - .:/onebitexchange
+    - gems:/gems
+
+db:
+  image: "postgres:12.2"
+  environment:
+    - POSTGRES_PASSWORD=postgres    
+  ports: ["5432:5432"]
+  expose: ["5432"]
